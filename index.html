@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>給妳的專屬道歉信</title>
+    <style>
+        body {
+            font-family: '微軟正黑體', sans-serif;
+            background-color: #fff0f5; /* 溫柔的淡粉色背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* 防止按鈕跑出螢幕外出現捲軸 */
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+            max-width: 500px;
+            width: 80%;
+            position: relative;
+            z-index: 10;
+        }
+        h1 {
+            color: #ff6b81;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        .actions {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-yes {
+            background-color: #ff6b81;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 129, 0.4);
+        }
+        .btn-yes:hover {
+            background-color: #ff4760;
+            transform: scale(1.05);
+        }
+        .btn-no {
+            background-color: #f1f2f6;
+            color: #747d8c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="message-box">
+        <h1>對不起，我錯了 🥺</h1>
+        <p>
+            這三年來我們一起經歷了許多，跨越了距離的考驗。<br>
+            我知道這次因為我的疏忽，讓妳感到不開心了。
+        </p>
+        <p>
+            我想認真地跟妳說聲對不起。<br>
+            我會改進，也希望妳能消消氣，好嗎？
+        </p>
+        
+        <div class="actions">
+            <button class="btn-yes" onclick="forgiveMe()">我原諒你</button>
+            <button class="btn-no" id="no-btn">我還在生氣</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+
+        // 當游標碰到「還在生氣」按鈕時，按鈕會隨機移動
+        noBtn.addEventListener('mouseover', function() {
+            // 計算視窗的可用寬高
+            const maxX = window.innerWidth - this.clientWidth - 50;
+            const maxY = window.innerHeight - this.clientHeight - 50;
+            
+            // 產生隨機座標
+            const randomX = Math.max(0, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(0, Math.floor(Math.random() * maxY));
+            
+            // 改變按鈕位置
+            this.style.position = 'fixed';
+            this.style.left = randomX + 'px';
+            this.style.top = randomY + 'px';
+        });
+
+        // 當點擊「原諒」時替換畫面內容
+        function forgiveMe() {
+            const box = document.getElementById('message-box');
+            box.innerHTML = `
+                <h1 style="color: #ff6b81;">謝謝妳願意原諒我 ❤️</h1>
+                <p style="font-size: 18px;">等妳回來，我們再去吃好吃的！</p>
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZpdG1naG5naTZ0a2w3bWZ5aWVzMGx1anB2bWV4N3p5cnh5MW9tNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26BRv0ThflsHCqDrG/giphy.gif" alt="hug" style="width: 100%; border-radius: 10px; margin-top: 20px;">
+            `;
+        }
+    </script>
+</body>
+</html>
